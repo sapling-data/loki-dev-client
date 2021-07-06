@@ -2,6 +2,15 @@
   "name": "@sapling-data/loki-dev-client",
   "version": "0.1.0",
   "description": "",
+  "scripts": {
+    "expose:cmd": "mv -v dist/* ./",
+    "start:dev": "webpack --mode=development --watch --progress",
+    "build:prod": "webpack --mode=production",
+    "prepublishOnly": "webpack --mode=production && npm run expose:cmd",
+    "build": "rollup main.js --file dist/bundle.js --format umd --name 'Loki'",
+    "rollup:dev": "rollup -c -w",
+    "rollup:build": "rollup -c"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sapling-data/loki-dev-client.git"
@@ -11,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/sapling-data/loki-dev-client/issues"
   },
-  "homepage": "https://github.com/sapling-data/loki-dev-client#readme"
+  "homepage": "https://github.com/sapling-data/loki-dev-client#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "rollup": "^2.52.3",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }
